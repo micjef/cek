@@ -1,17 +1,37 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { CloseSquare } from "iconsax-react";
 import { useState } from "react";
 
 const CreateIdeaPage = () => {
+  const [logoIdea, setLogoIdea] = useState<File>();
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [ideaRepository, setIdeaRepository] = useState<string>("");
   const [targetFinishIdea, setTargetFinishIdea] = useState<string>("");
   const [detailIdea, setDetailIdea] = useState<string[]>([]);
-  const [countDetailIdea, setCountDetailIdea] = useState<number>(0);
+  const [countDetailIdea, setCountDetailIdea] = useState<number>(1);
 
   return (
     <div className="createIdeaPage pt-24 px-5 ">
       <form>
+        <div className="mb-6">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            Logo Idea
+          </label>
+          <input
+            type="file"
+            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            placeholder="Create Super App Like Gojek"
+            onChange={(e) => {
+              const selectedFile = e.target.files?.[0];
+              if (selectedFile) {
+                setLogoIdea(selectedFile);
+              }
+            }}
+            accept="image/*"
+            required
+          />
+        </div>
         <div className="mb-6">
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
             Your Idea
